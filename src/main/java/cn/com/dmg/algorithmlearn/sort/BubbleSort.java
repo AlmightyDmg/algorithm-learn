@@ -9,16 +9,6 @@ public class BubbleSort {
         bubble(numbers);
         System.out.println(Arrays.toString(numbers));
 
-        //测试八万个数据的排序时间
-        int[] big = new int[80000];
-        for (int i = 0; i < big.length; i++) {
-            big[i] = (int)(Math.random() * 80000);
-        }
-        long start = System.currentTimeMillis();
-        bubble(big);
-        long end = System.currentTimeMillis();
-        System.out.println("用时：" + (end - start )+ "毫秒");
-        System.out.println(Arrays.toString(big));
 
     }
 
