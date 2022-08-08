@@ -27,7 +27,9 @@ public class TestSort {
         //int[] temp = new int[big.length];
         //MergeSort.mergeSort(big,0, big.length-1, temp);
         //基数排序 用时：9毫秒
-        RadixSort.radixSort(big);
+        //RadixSort.radixSort(big);
+        //堆排序 用时：12毫秒
+        HeapSort.heapSort(big);
         long end = System.currentTimeMillis();
         System.out.println("用时：" + (end - start )+ "毫秒");
         //System.out.println(Arrays.toString(big));
