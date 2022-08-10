@@ -35,6 +35,8 @@ public class Graph {
 
         //显示
         graph.showGraph();
+        //测试dfs
+        graph.dfs();
 
     }
 
@@ -55,11 +57,56 @@ public class Graph {
         numOfEdges = 0;
     }
 
+    //深度优先遍历
+    public void dfs(boolean[] isVisited,int i){
+        //首先访问该节点
+        System.out.println(getValueByIndex(i));
+        //将访问过的节点设置为已访问
+        isVisited[i] = true;
+        //查找 i 的第一个临接节点w
+        int w = getFirstNeighbor(i);
+        //有临接节点
+        while (w != -1){
+            if(!isVisited[w]){
+                //没有被访问过，则对w进行访问
+                dfs(isVisited,w);
+            }
+            //如果w已经被访问过 查找下一个 邻接节点
+            w = getNextNeighbor(i,w);
+        }
+
+    }
+
+    //对dfs进行重载 遍历所有的节点 并 进行 dfs
+    public void dfs(){
+        //遍历所有的节点 进行 dfs
+        for (int i = 0; i < getNumOfVertex(); i++) {
+            if(!isVisited[i]){
+                dfs(isVisited,i);
+            }
+        }
+    }
+
 
 
     //获得第一个邻接节点的下标
     public int getFirstNeighbor(int index){
+        for (int i = 0; i < vertexList.size(); i++) {
+            if(edges[index][i] > 0){
+                return i;
+            }
+        }
+        return -1;
+    }
 
+    //根据前一个 邻接节点 的下标来获取 下一个临接节点
+    public int getNextNeighbor(int v1,int v2){
+        for (int i = v2+1; i < vertexList.size(); i++) {
+            if(edges[v1][i]>0){
+                return i;
+            }
+        }
+        return -1;
     }
 
     //插入节点
